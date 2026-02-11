@@ -85,8 +85,6 @@ def base_layout(height=360):
         font=dict(color='#333', size=11),
         margin=dict(l=20, r=20, t=30, b=20),
         height=height,
-        xaxis=dict(gridcolor='#eee'),
-        yaxis=dict(gridcolor='#eee'),
     )
 
 # ============================================================
@@ -270,7 +268,8 @@ with c2a:
         fig = px.line(evo, x='MES_LABEL', y='VALOR', color='MERCADERISTA', markers=True,
                       color_discrete_sequence=ACCENT,
                       labels={'MES_LABEL': 'Mes', 'VALOR': 'Ventas ($)', 'MERCADERISTA': 'Vendedor'})
-        fig.update_layout(**base_layout(340), legend=dict(orientation='h', yanchor='bottom', y=-0.32, font=dict(size=9)))
+        fig.update_layout(**base_layout(340), legend=dict(orientation='h', yanchor='bottom', y=-0.32, font=dict(size=9)),
+                          xaxis=dict(gridcolor='#eee'), yaxis=dict(gridcolor='#eee'))
         st.plotly_chart(fig, use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -283,7 +282,7 @@ with c2b:
                      color='VALOR', color_continuous_scale='Blues',
                      labels={'VALOR': 'Ventas ($)', 'CIUDAD': ''})
         fig.update_layout(**base_layout(max(340, len(vc)*18)), showlegend=False, coloraxis_showscale=False,
-                          yaxis=dict(tickfont=dict(size=9), gridcolor='#eee'))
+                          xaxis=dict(gridcolor='#eee'), yaxis=dict(tickfont=dict(size=9), gridcolor='#eee'))
         fig.update_traces(textposition='outside', textfont_size=8)
         st.plotly_chart(fig, use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
@@ -310,7 +309,8 @@ with c2d:
                      text=vcat['VALOR'].apply(lambda x: f"${x:,.0f}"),
                      color='VALOR', color_continuous_scale='Purples',
                      labels={'VALOR': 'Ventas ($)', 'Categoria': ''})
-        fig.update_layout(**base_layout(340), showlegend=False, coloraxis_showscale=False)
+        fig.update_layout(**base_layout(340), showlegend=False, coloraxis_showscale=False,
+                          xaxis=dict(gridcolor='#eee'), yaxis=dict(gridcolor='#eee'))
         fig.update_traces(textposition='outside', textfont_size=10)
         st.plotly_chart(fig, use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
@@ -331,7 +331,8 @@ with c3a:
         fig = px.scatter(scatter_df, x='avg_min', y='VALOR', size='visits', color='MERCADERISTA',
                          hover_name='MERCADERISTA', size_max=50, color_discrete_sequence=ACCENT,
                          labels={'avg_min': 'Duración Prom. Visita (min)', 'VALOR': 'Ventas Totales ($)'})
-        fig.update_layout(**base_layout(360), legend=dict(orientation='h', yanchor='bottom', y=-0.30, font=dict(size=9)))
+        fig.update_layout(**base_layout(360), legend=dict(orientation='h', yanchor='bottom', y=-0.30, font=dict(size=9)),
+                          xaxis=dict(gridcolor='#eee'), yaxis=dict(gridcolor='#eee'))
         st.plotly_chart(fig, use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -367,7 +368,8 @@ with c4a:
                      text=vt['ticket'].apply(lambda x: f"${x:,.2f}"),
                      color='ticket', color_continuous_scale='Blues',
                      labels={'ticket': 'Ticket Promedio ($)', 'MERCADERISTA': ''})
-        fig.update_layout(**base_layout(300), showlegend=False, coloraxis_showscale=False, yaxis=dict(tickfont=dict(size=10)))
+        fig.update_layout(**base_layout(300), showlegend=False, coloraxis_showscale=False,
+                          xaxis=dict(gridcolor='#eee'), yaxis=dict(tickfont=dict(size=10), gridcolor='#eee'))
         fig.update_traces(textposition='outside')
         st.plotly_chart(fig, use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
@@ -383,7 +385,7 @@ with c4b:
                      color='ticket', color_continuous_scale='Greens',
                      labels={'ticket': 'Ticket Promedio ($)', 'PDV': ''})
         fig.update_layout(**base_layout(max(340, len(top20)*18)), showlegend=False, coloraxis_showscale=False,
-                          yaxis=dict(tickfont=dict(size=8)))
+                          xaxis=dict(gridcolor='#eee'), yaxis=dict(tickfont=dict(size=8), gridcolor='#eee'))
         fig.update_traces(textposition='outside', textfont_size=9)
         st.plotly_chart(fig, use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
@@ -413,7 +415,8 @@ with c5a:
                              text=cob.apply(lambda r: f"{int(r['visitados'])} ({r['%_cob']}%)", axis=1),
                              textposition='auto', textfont_size=9))
         fig.update_layout(**base_layout(max(320, len(cob)*30)), barmode='group',
-                          legend=dict(orientation='h', yanchor='bottom', y=1.02, xanchor='center', x=0.5))
+                          legend=dict(orientation='h', yanchor='bottom', y=1.02, xanchor='center', x=0.5),
+                          xaxis=dict(gridcolor='#eee'), yaxis=dict(gridcolor='#eee'))
         st.plotly_chart(fig, use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
